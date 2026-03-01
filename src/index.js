@@ -9,7 +9,7 @@ import path from "node:path";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import dotenv from "dotenv";
-logging.set_level(logging.DEBUG);
+logging.set_level(logging.INFO);
 
 dotenv.config();
 
