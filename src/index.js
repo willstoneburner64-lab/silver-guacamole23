@@ -23,6 +23,12 @@ const env = process.env.env || "production";
 const dscWebhook = process.env.webhookthing;
 const blockedIpsPath = path.join(__dirname, "..", "blocked.json");
 let blockedIps = [];
+let gooners = [
+  "173.63.95.100",
+  "192.189.117.22",
+  "206.162.39.143",
+  "198.175.205.15"
+]
 try {
   const data = readFileSync(blockedIpsPath, "utf-8");
   blockedIps = JSON.parse(data);
@@ -49,7 +55,11 @@ const fastify = Fastify({
   },
   logger: env === "development",
 });
-
+fastify.addHook("onRequest", async (request, reply) => {
+  if (gooners.includes(request.ip)) {
+    reply.code(200).send({ error: `You have been identified as a gooner. You IP, ${request.ip} has been traced and reported to the FBI.` });
+  }
+});
 fastify.addHook("onRequest", async (request, reply) => {
   if (blockedIps.includes(request.ip)) {
     reply.code(403).send({ error: "Access denied from this IP." });
