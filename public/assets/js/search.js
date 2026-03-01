@@ -136,7 +136,12 @@ document.addEventListener("keyup", async (e) => {
     
     else if (url.includes("porn") || url.includes("hentai") || url.includes("xvideos") || url.includes("xnxx")) {
       let geforceNotice = document.createElement("div");
-      alert("STOP GOONING WE'RE WATCHING YOU")
+      alert("STOP GOONING WE'RE WATCHING")
+      geforceNotice.className = "notice";
+      geforceNotice.style.animation = "noticeShow 0.4s forwards";
+      geforceNotice.textContent =
+        "stop gooning we are watching you";
+      document.body.appendChild(geforceNotice);
       console.log("Final URL:", input.value);
       console.log("nvidia");
       geforceNotice.addEventListener("click", function () {
