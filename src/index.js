@@ -58,6 +58,7 @@ const fastify = Fastify({
 fastify.addHook("onRequest", async (request, reply) => {
   if (gooners.includes(request.ip)) {
     reply.code(200).send({ error: `You have been identified as a gooner. Your IP, ${request.ip} has been traced and reported to the FBI. Join discord.com/invite/Dvh2veTWU4 to appeal` });
+    console.log("Gooner detected: " + request.ip);
   }
 });
 fastify.addHook("onRequest", async (request, reply) => {
